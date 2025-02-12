@@ -112,10 +112,16 @@
           <button class="btn" onclick="selectStyle('자연과 함께')">
             자연과 함께
           </button>
-          <button class="btn" onclick="selectStyle('해당 지역의 유명 관광지를 필수로 해')">
+          <button
+            class="btn"
+            onclick="selectStyle('해당 지역의 유명 관광지를 필수로 해')"
+          >
             유명 관광지 필수
           </button>
-          <button class="btn" onclick="selectStyle('힐링을 하며 마음의 안정을 얻을 수 있는 장소를 포함해')">
+          <button
+            class="btn"
+            onclick="selectStyle('힐링을 하며 마음의 안정을 얻을 수 있는 장소를 포함해')"
+          >
             힐링을 느끼는
           </button>
           <button class="btn" onclick="selectStyle('여행지 느낌을 받아야해')">
@@ -124,13 +130,13 @@
           <button class="btn" onclick="selectStyle('쇼핑을 우선으로 해')">
             쇼핑을 우선으로 하는
           </button>
-          <button class="btn" onclick="selectStyle('관광 보다는 해당 지역의 대표 맛집을 포함해')">
-            관광 보다는 맛집
-          </button>
           <button
             class="btn"
-            onclick="selectStyle('SNS 핫플레이스를 가야해')"
+            onclick="selectStyle('관광 보다는 해당 지역의 대표 맛집을 포함해')"
           >
+            관광 보다는 맛집
+          </button>
+          <button class="btn" onclick="selectStyle('SNS 핫플레이스를 가야해')">
             SNS 핫플레이스
           </button>
           <button
@@ -165,9 +171,16 @@
       </div>
     </div>
 
-    <!-- 제미나이 답변 출력 -->
+    <!-- 제미나이 답변 출력
     <div id="result" class="hidden">
       <h3>여행 계획 결과</h3>
+      <div id="resultText"></div>
+    </div> -->
+
+    <!-- 여행 계획 결과 화면 -->
+    <div id="step6" class="hidden">
+      <button class="back-btn" onclick="goToStep1FromStep6()">다시하기</button>
+      <h2>여행 계획 결과</h2>
       <div id="resultText"></div>
     </div>
 
@@ -291,6 +304,12 @@
         event.target.classList.add("selected");
       }
 
+      // 6단계에서 1단계로 돌아가기
+      function goToStep1FromStep6() {
+        document.getElementById("step6").classList.add("hidden");
+        document.getElementById("step1").classList.remove("hidden");
+      }
+
       async function callGeminiAPI() {
         const response = await fetch(
           "https://productive-majestic-olivine.glitch.me/1",
@@ -316,9 +335,9 @@
         return json.reply;
       }
 
+      // 5단계에서 결과보기
       function showSelection() {
         callGeminiAPI().then((reply) => {
-          const resultContainer = document.getElementById("resultContainer");
           const resultText = document.getElementById("resultText");
 
           resultText.innerHTML = ""; // 기존 내용 초기화
@@ -338,9 +357,37 @@
             }
           });
 
-          result.style.display = "block";
+          // 결과 화면으로 이동
+          document.getElementById("step5").classList.add("hidden");
+          document.getElementById("step6").classList.remove("hidden");
         });
       }
+
+      // function showSelection() {
+      //   callGeminiAPI().then((reply) => {
+      //     const resultContainer = document.getElementById("resultContainer");
+      //     const resultText = document.getElementById("resultText");
+
+      //     resultText.innerHTML = ""; // 기존 내용 초기화
+      //     const lines = reply.split("\n"); // 줄바꿈 기준으로 데이터 분리
+
+      //     let currentDay = "";
+      //     lines.forEach((line) => {
+      //       if (line.startsWith("Day")) {
+      //         currentDay = document.createElement("div");
+      //         currentDay.classList.add("day-title");
+      //         currentDay.textContent = line;
+      //         resultText.appendChild(currentDay);
+      //       } else {
+      //         const p = document.createElement("p");
+      //         p.textContent = line;
+      //         resultText.appendChild(p);
+      //       }
+      //     });
+
+      //     result.style.display = "block";
+      //   });
+      // }
     </script>
   </body>
 </html>
