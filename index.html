@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>여행 계획</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="step1">
+        <h2>대한민국</h2>
+        <div class="location-buttons">
+          <button class="btn" onclick="selectLocation('서울')">서울</button>
+          <button class="btn" onclick="selectLocation('가평·양평')">
+            가평·양평
+          </button>
+          <button class="btn" onclick="selectLocation('강릉·속초')">
+            강릉·속초
+          </button>
+          <button class="btn" onclick="selectLocation('경주')">경주</button>
+          <button class="btn" onclick="selectLocation('부산')">부산</button>
+          <button class="btn" onclick="selectLocation('여수')">여수</button>
+          <button class="btn" onclick="selectLocation('전주')">전주</button>
+          <button class="btn" onclick="selectLocation('제주')">제주</button>
+          <button class="btn" onclick="selectLocation('춘천·홍천')">
+            춘천·홍천
+          </button>
+          <button class="btn" onclick="selectLocation('태안')">태안</button>
+          <button class="btn" onclick="selectLocation('통영·거제·남해')">
+            통영·거제·남해
+          </button>
+          <button class="btn" onclick="selectLocation('포항·안동')">
+            포항·안동
+          </button>
+        </div>
+        <br />
+        <button class="next-btn" id="nextStep1" onclick="goToStep2()" disabled>
+          다음
+        </button>
+      </div>
+
+      <!-- 동반자 선택 화면 -->
+      <div id="step2" class="hidden">
+        <button class="back-btn" onclick="goToStep1()">이전</button>
+        <!-- <div class="emoji">😎</div> -->
+        <h2>누구와 떠나나요?</h2>
+        <p>다중 선택이 가능해요.</p>
+        <div class="location-buttons">
+          <button class="btn" onclick="selectedCompanion('혼자')">혼자</button>
+          <button class="btn" onclick="selectedCompanion('친구와')">
+            친구와
+          </button>
+          <button class="btn" onclick="selectedCompanion('연인과')">
+            연인과
+          </button>
+          <button class="btn" onclick="selectedCompanion('배우자와')">
+            배우자와
+          </button>
+          <button class="btn" onclick="selectedCompanion('아이와')">
+            아이와
+          </button>
+          <button class="btn" onclick="selectedCompanion('부모님과')">
+            부모님과
+          </button>
+          <button class="btn" onclick="selectedCompanion('애완동물')">
+            애완동물
+          </button>
+        </div>
+        <br />
+        <button class="next-btn" id="nextStep2" onclick="goToStep3()" disabled>
+          다음
+        </button>
+      </div>
+
+      <!-- 여행 기간 선택 화면 -->
+      <div id="step3" class="hidden">
+        <button class="back-btn" onclick="goToStep2FromStep3()">이전</button>
+        <h2>여행 기간은 어떻게 되나요?</h2>
+        <div class="location-buttons">
+          <button class="btn" onclick="selectDuration('1일')">당일치기</button>
+          <button class="btn" onclick="selectDuration('1박 2일')">
+            1박 2일
+          </button>
+          <button class="btn" onclick="selectDuration('2박 3일')">
+            2박 3일
+          </button>
+          <button class="btn" onclick="selectDuration('3박 4일')">
+            3박 4일
+          </button>
+          <button class="btn" onclick="selectDuration('4박 5일')">
+            4박 5일
+          </button>
+          <button class="btn" onclick="selectDuration('5박 6일')">
+            5박 6일
+          </button>
+        </div>
+        <br />
+        <button class="next-btn" id="nextStep3" onclick="goToStep4()" disabled>
+          다음
+        </button>
+      </div>
+
+      <!-- 여행 스타일-->
+      <div id="step4" class="hidden">
+        <button class="back-btn" onclick="goToStep3FromStep4()">이전</button>
+        <h2>어떤 여행 스타일을 선호하시나요?</h2>
+        <div class="location-buttons">
+          <button class="btn" onclick="selectStyle('체험·액티비티')">
+            체험·액티비티
+          </button>
+          <button class="btn" onclick="selectStyle('자연과 함께')">
+            자연과 함께
+          </button>
+          <button class="btn" onclick="selectStyle('해당 지역의 유명 관광지를 필수로 해')">
+            유명 관광지 필수
+          </button>
+          <button class="btn" onclick="selectStyle('힐링을 하며 마음의 안정을 얻을 수 있는 장소를 포함해')">
+            힐링을 느끼는
+          </button>
+          <button class="btn" onclick="selectStyle('여행지 느낌을 받아야해')">
+            여행지 느낌을 받는
+          </button>
+          <button class="btn" onclick="selectStyle('쇼핑을 우선으로 해')">
+            쇼핑을 우선으로 하는
+          </button>
+          <button class="btn" onclick="selectStyle('관광 보다는 해당 지역의 대표 맛집을 포함해')">
+            관광 보다는 맛집
+          </button>
+          <button
+            class="btn"
+            onclick="selectStyle('SNS 핫플레이스를 가야해')"
+          >
+            SNS 핫플레이스
+          </button>
+          <button
+            class="btn"
+            onclick="selectStyle('문화·예술·역사 체험할 수 있는 장소를 포함')"
+          >
+            문화·예술·역사
+          </button>
+        </div>
+        <br />
+        <button class="next-btn" id="nextStep4" onclick="goToStep5()">
+          다음
+        </button>
+      </div>
+
+      <!-- 여행 일정-->
+      <div id="step5" class="hidden">
+        <button class="back-btn" onclick="goToStep4FromStep5()">이전</button>
+        <h2>어느 정도의 일정을 선호하시나요?</h2>
+        <div class="location-buttons">
+          <button class="btn" onclick="selectSchedule('빼곡한 일정 선호')">
+            빼곡한 일정 선호
+          </button>
+          <button class="btn" onclick="selectSchedule('널널한 일정 선호')">
+            널널한 일정 선호
+          </button>
+        </div>
+        <br />
+        <button class="next-btn" id="nextStep5" onclick="showSelection()">
+          결과보기
+        </button>
+      </div>
+    </div>
+
+    <!-- 제미나이 답변 출력 -->
+    <div id="result" class="hidden">
+      <h3>여행 계획 결과</h3>
+      <div id="resultText"></div>
+    </div>
+
+    <script>
+      let selectedLocation = ""; //지역선택
+      let selectedCompanions = []; //동반자
+      let selectedDuration = ""; //기간
+      let selectedStyle = []; //여행 스타일
+      let selectedSchedule = ""; //여행 일정 정도
+
+      //1단계 여행지 선택 변수 저장
+      function selectLocation(location) {
+        selectedLocation = location;
+        document
+          .querySelectorAll("#step1 .btn")
+          .forEach((btn) => btn.classList.remove("selected"));
+        event.target.classList.add("selected");
+        document.getElementById("nextStep1").disabled = false;
+      }
+
+      //2단계로 가기 - 동반자 선택
+      function goToStep2() {
+        if (selectedLocation) {
+          document.getElementById("step1").classList.add("hidden");
+          document.getElementById("step2").classList.remove("hidden");
+        }
+      }
+
+      //1단계로 돌아가기 - 여행지 선택으로
+      function goToStep1() {
+        document.getElementById("step2").classList.add("hidden");
+        document.getElementById("step1").classList.remove("hidden");
+      }
+
+      //2단계 - 동반자 변수를 배열로 중복 저장
+      function selectedCompanion(companion) {
+        const index = selectedCompanions.indexOf(companion);
+        if (index > -1) {
+          selectedCompanions.splice(index, 1);
+          event.target.classList.remove("selected");
+        } else {
+          selectedCompanions.push(companion);
+          event.target.classList.add("selected");
+        }
+        document.getElementById("nextStep2").disabled =
+          selectedCompanions.length === 0;
+      }
+
+      //3단계로 이동가기
+      function goToStep3() {
+        if (selectedCompanions.length > 0) {
+          document.getElementById("step2").classList.add("hidden");
+          document.getElementById("step3").classList.remove("hidden");
+        }
+      }
+
+      //2단계로 돌아가기
+      function goToStep2FromStep3() {
+        document.getElementById("step3").classList.add("hidden");
+        document.getElementById("step2").classList.remove("hidden");
+      }
+
+      //3단계 - 기간을 정하기
+      function selectDuration(duration) {
+        selectedDuration = duration;
+        document
+          .querySelectorAll("#step3 .btn")
+          .forEach((btn) => btn.classList.remove("selected"));
+        event.target.classList.add("selected");
+        document.getElementById("nextStep3").disabled = false;
+      }
+
+      //4단계로 이동
+      function goToStep4() {
+        if (selectedDuration) {
+          document.getElementById("step3").classList.add("hidden");
+          document.getElementById("step4").classList.remove("hidden");
+        }
+      }
+
+      //3단계로 돌아오기
+      function goToStep3FromStep4() {
+        document.getElementById("step4").classList.add("hidden");
+        document.getElementById("step3").classList.remove("hidden");
+      }
+
+      // 4단계 - 여행 스타일 선택 함수 (다중 선택 가능)
+      function selectStyle(style) {
+        const index = selectedStyle.indexOf(style);
+        if (index > -1) {
+          selectedStyle.splice(index, 1);
+          event.target.classList.remove("selected");
+        } else {
+          selectedStyle.push(style);
+          event.target.classList.add("selected");
+        }
+        document.getElementById("nextStep4").disabled =
+          selectedStyle.length === 0;
+      }
+
+      // 5단계로 이동
+      function goToStep5() {
+        if (selectedStyle.length > 0) {
+          document.getElementById("step4").classList.add("hidden");
+          document.getElementById("step5").classList.remove("hidden");
+        }
+      }
+
+      // 4단계로 이동
+      function goToStep4FromStep5() {
+        document.getElementById("step5").classList.add("hidden");
+        document.getElementById("step4").classList.remove("hidden");
+      }
+
+      // 여행 일정 선택 함수
+      function selectSchedule(schedule) {
+        selectedSchedule = schedule;
+        document
+          .querySelectorAll("#step5 .btn")
+          .forEach((btn) => btn.classList.remove("selected"));
+        event.target.classList.add("selected");
+      }
+
+      async function callGeminiAPI() {
+        const response = await fetch(
+          "https://productive-majestic-olivine.glitch.me/1",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              text: `너는 여행 계획 전문가야. 나는 지금 여행을 가고 싶은데, 다음과 같은 조건들이 있어:
+                    1. 여행지는 ${selectedLocation}로 정했어.
+                    2. 동반자는 ${selectedCompanions.join(", ")}와 함께 갈 거야.
+                    3. 여행 기간은 ${selectedDuration}로 계획하고 있어.
+                    4. 내가 선호하는 여행 스타일은 ${selectedStyle.join(
+                      ", "
+                    )}야.
+                    5. 여행 일정은 ${selectedSchedule} 정도로 하고 싶어.
+                    이 조건들을 바탕으로 여행 일정을 Day 1, Day 2 식으로 나누어 추천해주고 절대 마크다운 형식으로 보여주지마.`,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const json = await response.json();
+        return json.reply;
+      }
+
+      function showSelection() {
+        callGeminiAPI().then((reply) => {
+          const resultContainer = document.getElementById("resultContainer");
+          const resultText = document.getElementById("resultText");
+
+          resultText.innerHTML = ""; // 기존 내용 초기화
+          const lines = reply.split("\n"); // 줄바꿈 기준으로 데이터 분리
+
+          let currentDay = "";
+          lines.forEach((line) => {
+            if (line.startsWith("Day")) {
+              currentDay = document.createElement("div");
+              currentDay.classList.add("day-title");
+              currentDay.textContent = line;
+              resultText.appendChild(currentDay);
+            } else {
+              const p = document.createElement("p");
+              p.textContent = line;
+              resultText.appendChild(p);
+            }
+          });
+
+          result.style.display = "block";
+        });
+      }
+    </script>
+  </body>
+</html>
