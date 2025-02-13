@@ -209,6 +209,7 @@ async function callGeminiAPI() {
   return json.reply;
 }
 
+
 function initMap() {
   // Google Maps API를 사용한 지도 초기화 예시
   const map = new google.maps.Map(document.getElementById('map'), {
